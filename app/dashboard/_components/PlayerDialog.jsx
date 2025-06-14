@@ -1,4 +1,4 @@
-// /app/dashboard/_components/PlayerDialog.jsx
+// /app/dashboard/_components/PlayerDialog.js
 import React, { useEffect, useState } from "react";
 import {
   Dialog,
