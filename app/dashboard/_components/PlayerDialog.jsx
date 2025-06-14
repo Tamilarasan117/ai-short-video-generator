@@ -65,9 +65,6 @@ function PlayerDialog({ playVideo, videoId }) {
         imageList: (videoData?.imageList || []).map(makeAbsoluteUrl),
         audioFileUrl: makeAbsoluteUrl(videoData?.audioFileUrl),
         script: videoData?.script || [],
-        imageList: (videoData?.imageList || []).map(makeAbsoluteUrl),
-        audioFileUrl: makeAbsoluteUrl(videoData?.audioFileUrl),
-        script: videoData?.script || [],
       };
 
       const response = await fetch("http://localhost:4000/export-video", {
@@ -82,7 +79,6 @@ function PlayerDialog({ playVideo, videoId }) {
       } 
 
       const data = await response.json();
-      const base64Data = data?.result;
       const base64Data = data?.result;
 
       if (!base64Data?.startsWith("data:video/mp4;base64,")) {
@@ -110,12 +106,10 @@ function PlayerDialog({ playVideo, videoId }) {
       const link = document.createElement("a");
       link.href = url;
       link.download = `video-${videoData?.id || Date.now()}.mp4`;
-      link.download = `video-${videoData?.id || Date.now()}.mp4`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
-
 
       toast.success("Video exported successfully!");
     } catch (error) {
